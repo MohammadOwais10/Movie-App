@@ -5,6 +5,7 @@ import App from "./components/App";
 import { applyMiddleware, createStore } from "redux";
 import movies from "./reducers";
 import rootReducer from "./reducers";
+import thunk from "redux-thunk";
 
 //first way using middleware
 // // function logger(obj,next,action)
@@ -25,11 +26,25 @@ const logger =
   (next) =>
   (action) => {
     //logger code
-    console.log("ACTION_TYPE=", action.type);
+    if (typeof action !== "function") {
+      // console.log("ACTION_TYPE=", action.type);
+    }
     next(action);
   };
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+// const thunk =
+//   ({ dispatch, getState }) =>
+//   (next) =>
+//   (action) => {
+//     //logger code
+//     if (typeof action === "function") {
+//       action(dispatch);
+//       return;
+//     }
+//     next(action);
+//   };
+
+const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 console.log("store", store);
 // console.log("BEFORE STATE", store.getState());
 
