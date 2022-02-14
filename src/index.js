@@ -6,17 +6,28 @@ import { applyMiddleware, createStore } from "redux";
 import movies from "./reducers";
 import rootReducer from "./reducers";
 
-// function logger(obj,next,action)
-// logger(obj)(next)
-const logger = function ({ dispatch, getState }) {
-  return function (next) {
-    return function (action) {
-      //middleware code
-      console.log("ACTION_TYPE=", action.type);
-      next(action);
-    };
+//first way using middleware
+// // function logger(obj,next,action)
+// // logger(obj)(next)
+// const logger = function ({ dispatch, getState }) {
+//   return function (next) {
+//     return function (action) {
+//       //middleware code
+//       console.log("ACTION_TYPE=", action.type);
+//       next(action);
+//     };
+//   };
+// };
+
+//other  way using Modifying middleware
+const logger =
+  ({ dispatch, getState }) =>
+  (next) =>
+  (action) => {
+    //logger code
+    console.log("ACTION_TYPE=", action.type);
+    next(action);
   };
-};
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 console.log("store", store);
