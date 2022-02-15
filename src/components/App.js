@@ -2,17 +2,16 @@ import React from "react";
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
 import { addMovies, setShowFavourites } from "../actions";
-import { StoreContext } from "../index";
+import { connect } from "../index";
 import { data as moviesList } from "../data";
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.store.subscribe(() => this.forceUpdate());
-    this.props.store.dispatch(addMovies(moviesList));
+    this.props.dispatch(addMovies(moviesList));
   }
 
   isMovieInFavourites = (movie) => {
-    const { movies } = this.props.store.getState();
+    const { movies } = this.props;
     const index = movies.favourites.indexOf(movie);
     if (index !== -1) {
       //found the movie
@@ -22,13 +21,13 @@ class App extends React.Component {
   };
 
   changeTab = (val) => {
-    this.props.store.dispatch(setShowFavourites(val));
+    this.props.dispatch(setShowFavourites(val));
   };
 
   render() {
-    const { movies, search } = this.props.store.getState();
+    const { movies, search } = this.props;
     const { list, showFavourites = [], favourites = [] } = movies;
-    console.log("RENDER", this.props.store.getState());
+    console.log("RENDER", this.props);
     const displayMovies = showFavourites ? favourites : list;
 
     return (
@@ -54,7 +53,7 @@ class App extends React.Component {
               <MovieCard
                 movie={movie}
                 key={movie.imdbID}
-                dispatch={this.props.store.dispatch}
+                dispatch={this.props.dispatch}
                 isFavourite={this.isMovieInFavourites(movie)}
               />
             ))}
@@ -68,14 +67,22 @@ class App extends React.Component {
   }
 }
 
-class AppWrapper extends React.Component {
-  render() {
-    return (
-      <StoreContext.Consumer>
-        {(store) => <App store={store} />}
-      </StoreContext.Consumer>
-    );
-  }
-}
+// class AppWrapper extends React.Component {
+//   render() {
+//     return (
+//       <StoreContext.Consumer>
+//         {(store) => <App store={store} />}
+//       </StoreContext.Consumer>
+//     );
+//   }
+// }
 
-export default AppWrapper;
+function callback(state) {
+  return {
+    movies: state.movies,
+    search: state.movies,
+  };
+}
+const connectedComponent = connect(callback)(App);
+
+export default connectedComponent;
