@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
@@ -54,5 +54,24 @@ console.log("store", store);
 // });
 
 // console.log("AFTER STATE", store.getState());
+export const StoreContext = createContext();
 
-ReactDOM.render(<App store={store} />, document.getElementById("root"));
+console.log("StoreContext", StoreContext);
+
+class Provider extends React.Component {
+  render() {
+    const { store } = this.props;
+    return (
+      <StoreContext.Provider value={store}>
+        {this.props.children}
+      </StoreContext.Provider>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
