@@ -1,8 +1,38 @@
-# Getting Started with Create React App
+# Movie App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Movie app is a list of movies.
+
+## Tools and Packages
+
+![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)&nbsp;
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)&nbsp;
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)&nbsp;
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)&nbsp;
+
+## Features
+
+- Search movies.
+- Add movies from search results to movies list.
+- Add a particular movie to Favourites.
+- Remove a particular movie from Favourites.
+- API use to fetch new movie.
+
+## UI Screenshot
+
+- Home UI
+  ![homeMovie](https://user-images.githubusercontent.com/91982138/174543081-3354d813-2d1f-4311-9212-07d945bdb75a.PNG)
+- Search Movie UI
+  ![searchMovie](https://user-images.githubusercontent.com/91982138/174543030-9a78d8d2-e8f0-41c3-9ac0-e1bd6a542620.PNG)
+- Favourites Section UI
+  ![favouriteMovie](https://user-images.githubusercontent.com/91982138/174543047-84053e53-9686-45e1-9d09-279eca12fa00.PNG)
+- Home Section UI
+  ![homebelowMovie](https://user-images.githubusercontent.com/91982138/174542992-d07dcc21-737f-4949-bbf6-47d1502e417d.PNG)
 
 ## Available Scripts
+
+### Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
